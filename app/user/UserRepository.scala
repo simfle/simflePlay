@@ -18,18 +18,18 @@ class UserRepository @Inject()(dbConfigProvider: DatabaseConfigProvider) {
     db.run(userTableQuery.result)
   }
 
-  //User get
+
   def get(id: Long) : Future[Option[User]] = {
-    db.run(userTableQuery.filter(_.id == id).result.headOption)
+    db.run(userTableQuery.filter(_.id === id).result.headOption)
   }
 
-  //Save
+
   def save(user: User) : Future[Int] = {
     db.run(userTableQuery += user)
   }
 
   def update(id: Long, firstName: String): Future[Int] = {
-    val updateQuery = userTableQuery.filter(_.id == id)
+    val updateQuery = userTableQuery.filter(_.id === id)
       .map(user => user.firstName)
       .update(firstName)
     db.run(updateQuery)

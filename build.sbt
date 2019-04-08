@@ -11,9 +11,9 @@ resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 scalaVersion := "2.12.2"
 
 //jdbc library delete, jdbc ,evloutions delete
-libraryDependencies ++= Seq( ehcache , ws , specs2 % Test , guice )
+libraryDependencies ++= Seq(ehcache , ws , specs2 % Test , guice )
 libraryDependencies +="com.h2database" % "h2" % "1.4.192"
-libraryDependencies += "com.typesafe.slick" %% "slick" % "3.2.3"
+libraryDependencies += "com.typesafe.play" %% "play-slick" % "3.0.3"
 libraryDependencies += "com.typesafe.play" %% "play-slick-evolutions" % "3.0.3"
 
 

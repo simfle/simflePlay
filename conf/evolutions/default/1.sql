@@ -1,13 +1,19 @@
-# User schema
+# --- !Ups   <<-- 업그레이드 시 실행되는 부분
 
-# --- !Ups
-create table `user` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `first_name` TEXT NOT NULL,
-  `last_name` TEXT NOT NULL,
-  `mobile` BIGINT NOT NULL,
-  `email` TEXT NOT NULL
-)
+CREATE TABLE conference (
+  id long NOT NULL,
+  name varchar(255) NOT NULL,
+  attendees long NOT NULL,
+  date DATE NOT NULL
+);
 
-# --- !Downs
-drop table `user`
+CREATE TABLE session (
+  id long NOT NULL,
+  title varchar(255) NOT NULL,
+  speaker_id long NOT NULL,
+  conference_id long NOT NULL
+);
+
+# --- !Downs   <<- 다운그레이드 시 실행되는 부분
+DROP TABLE IF EXISTS conference;
+DROP TABLE IF EXISTS session;
