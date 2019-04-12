@@ -1,10 +1,9 @@
 # --- !Ups   <<-- 업그레이드 시 실행되는 부분
-
-CREATE TABLE conference (
-  id long NOT NULL,
-  name varchar(255) NOT NULL,
-  attendees long NOT NULL,
-  date DATE NOT NULL
+CREATE TABLE USER (
+  id IDENTITY NOT NULL PRIMARY KEY,
+  first_name varchar(255),
+  last_name varchar(255),
+  email varchar(255)
 );
 
 CREATE TABLE session (
@@ -15,5 +14,5 @@ CREATE TABLE session (
 );
 
 # --- !Downs   <<- 다운그레이드 시 실행되는 부분
-DROP TABLE IF EXISTS conference;
-DROP TABLE IF EXISTS session;
+DROP TABLE IF EXISTS USER;
+DROP TABLE IF EXISTS session

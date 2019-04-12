@@ -5,7 +5,12 @@
 
 
 GET     /                           controllers.HomeController.index
-GET     /user/:id                   user.UserController.get(id: Long)
+
+#user
+->      /user                       user.UserRouter
+
+#GET     /user                       user.UserController.list
+#GET     /user/:id                   user.UserController.get(id: Long)
 
 GET     /count                      controllers.CountController.count
 

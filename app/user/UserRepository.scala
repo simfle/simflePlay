@@ -14,15 +14,13 @@ class UserRepository @Inject()(dbConfigProvider: DatabaseConfigProvider) {
   private val db = dbConfigProvider.get[H2Profile].db
   private val userTableQuery = TableQuery[UserTable]
 
-  def all: Future[Seq[User]] = {
+  def all: Future[Iterable[User]] = {
     db.run(userTableQuery.result)
   }
-
 
   def get(id: Long) : Future[Option[User]] = {
     db.run(userTableQuery.filter(_.id === id).result.headOption)
   }
-
 
   def save(user: User) : Future[Int] = {
     db.run(userTableQuery += user)
