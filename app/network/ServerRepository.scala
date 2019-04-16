@@ -1,11 +1,9 @@
-package server
+package network
 
 import javax.inject.{Inject, Singleton}
-
+import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.H2Profile
 import slick.jdbc.H2Profile.api._
-import user.{User, UserTable}
-import play.api.db.slick.DatabaseConfigProvider
 
 import scala.concurrent.Future
 
@@ -15,9 +13,19 @@ class ServerRepository @Inject()(dbConfigProvider: DatabaseConfigProvider) {
 
   private val db = dbConfigProvider.get[H2Profile].db
   private val serverTableQuery = TableQuery[ServerTable]
+  private val serverStatusTableQuery = TableQuery[ServerStatusTable]
 
   def all: Future[Seq[Server]] = {
     db.run(serverTableQuery.result)
+  }
+
+  def list: Future[Seq[(Server, ServerStatus)]] = {
+    val query = for {
+      (server, serverStatus) <- serverTableQuery
+        .join(serverStatusTableQuery)
+        .on(_.id === _.serverId)
+    } yield (server, serverStatus)
+    db.run(query.result)
   }
 
 

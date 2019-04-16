@@ -6,13 +6,25 @@ CREATE TABLE USER (
   email varchar(255)
 );
 
-CREATE TABLE session (
-  id long NOT NULL,
-  title varchar(255) NOT NULL,
-  speaker_id long NOT NULL,
-  conference_id long NOT NULL
+CREATE TABLE SERVER (
+  id IDENTITY NOT NULL PRIMARY KEY,
+  name varchar(255),
+  public_host varchar(255),
+  private_host varchar(255),
+  public_port INT,
+  private_port INT
 );
+
+CREATE TABLE SERVERSTATUS (
+  id IDENTITY NOT NULL PRIMARY KEY,
+  amount_used BIGINT,
+  max_amount BIGINT,
+  interval_second BIGINT,
+  server_id BIGINT
+);
+
 
 # --- !Downs   <<- 다운그레이드 시 실행되는 부분
 DROP TABLE IF EXISTS USER;
-DROP TABLE IF EXISTS session
+DROP TABLE IF EXISTS SERVER;
+DROP TABLE IF EXISTS SERVERSTATUS;

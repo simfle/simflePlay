@@ -5,8 +5,7 @@ import play.api.routing.Router.Routes
 import play.api.routing.SimpleRouter
 import play.api.routing.sird._
 
-class UserRouter @Inject()(userController: UserController)
-  extends SimpleRouter {
+class UserRouter @Inject()(userController: UserController) extends SimpleRouter {
 
   val prefix = "/user"
 

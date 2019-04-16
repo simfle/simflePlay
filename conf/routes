@@ -9,6 +9,9 @@ GET     /                           controllers.HomeController.index
 #user
 ->      /user                       user.UserRouter
 
+#server
+->      /server                     network.NetworkRouter
+
 #GET     /user                       user.UserController.list
 #GET     /user/:id                   user.UserController.get(id: Long)
 
