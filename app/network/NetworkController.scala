@@ -8,10 +8,9 @@ import scala.concurrent.ExecutionContext
 
 
 @Singleton
-class ServerController @Inject()(cc: ControllerComponents)
-                                (serverRepository: ServerRepository)
-                                (serverResourceHandler: ServerResourceHandler)
-                                (implicit exec: ExecutionContext)extends AbstractController(cc){
+class NetworkController @Inject()(cc: ControllerComponents)
+                                 (serverResourceHandler: ServerResourceHandler)
+                                 (implicit exec: ExecutionContext)extends AbstractController(cc){
 
   def list = Action.async {
     serverResourceHandler.list.map(serverResource =>

@@ -13,7 +13,6 @@ class ServerStatusTable(tag:Tag) extends Table[ServerStatus](tag, "SERVERSTATUS"
   def intervalSecond = column[Long]("INTERVAL_SECOND")
   def serverId = column[Long]("SERVER_ID")
 
-  //외래키
   val serverTable = TableQuery[ServerTable]
   var serverFk = foreignKey("SERVERSTATUS_SERVER_FK",serverId, serverTable)(_.id)
 

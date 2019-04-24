@@ -36,9 +36,11 @@ object ServerResource {
 
 @Singleton
 class ServerResourceHandler @Inject()(serverRepository: ServerRepository) {
+
   def list:Future[Seq[ServerResource]] = {
     serverRepository.list.map(serverList =>
-      serverList.map(server => ServerResource(server._1.id, server._1.name,
+      serverList.map(server =>
+        ServerResource(server._1.id, server._1.name,
         server._1.publicHost, server._1.privateHost, server._1.publicPort,
         server._1.privatePort,
         ServerStatusResource(server._2.id, server._2.serverId, server._2.amountUsed,
